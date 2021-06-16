@@ -6,6 +6,7 @@ canvas.style.border = '2px solid black'
 
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
+let startScreen = document.querySelector('div img')
 let gameOver = false;
 let score = 0
 let lives = 3
@@ -19,17 +20,17 @@ let pkbllX = trnrX +31, pkbllY = trnrY +40;
 let arrPkbll = []
 let incrPkbll  = 10 
 
-let gengarX = Math.floor(Math.random() *200), gengarY = Math.floor(Math.random() *200) 
-let gengarIncrX = 3, gengarIncrY = 3
+let gengarX = Math.floor(Math.random() *200), gengarY = 0 
+let gengarIncrX = 4, gengarIncrY = 4
 
-let haunterX = Math.floor(Math.random() *400), haunterY = Math.floor(Math.random() *400)
-let haunterIncrX = -3, haunterIncrY = 3
+let haunterX = Math.floor(Math.random() *400), haunterY = 0
+let haunterIncrX = -4, haunterIncrY = 4
 
-let gastlyX = Math.floor(Math.random() *600), gastlyY = Math.floor(Math.random() *600)
-let gastlyIncrX = 3, gastlyIncrY = -3
+let gastlyX = Math.floor(Math.random() *600), gastlyY = 0
+let gastlyIncrX = 4, gastlyIncrY = -4
 
 
-let trnrIncrX = 1, trnrIncrY = 1;
+let trnrIncrX = 10, trnrIncrY = 10;
 
 let isLeft = false, isRight = false, isUp = false, isDown = false;
 let isA = false, isD = false, isW = false, isS = false;
@@ -120,7 +121,7 @@ function collisionGengar() {
         
     }
     if (gengarY <0){
-        gengarIncrY = +4 
+        gengarIncrY = +4
     }
 }
 function collisionHaunter() {
@@ -154,171 +155,113 @@ function collisionGastly() {
     }
 }
 
-// SCORE COLLISIONS
-function collPkbllGeng(){
+// PKMN COLLISION
+// function collPkbllGeng(){
     
-    // right
-    if (pkbllX == gengarX +gengar.width) {
-        if (pkbllY +pkbll.height >= gengarY && pkbllY <= gengarY +gengar.height ){
-            score += 30
-        }
-    }
-    // left
-    if (pkbllX + pkbll.width == gengarX) {
-        if (pkbllY +pkbll.height >= gengarY && pkbllY <= gengarY +gengar.height ){
-            score += 30
-        }
-    }
-    // top
-    if (pkbllY +pkbll.height == gengarY) {
-        if (pkbllX + pkbll.width >= gengarX && pkbllX <= gengarX + gengar.width) {
-            score += 30
-        }
-    }
-    // bottom
-    if (pkbllY == gengarY +gengar.height) {
-        if (pkbllX + pkbll.width >= gengarX && pkbllX <= gengarX + gengar.width) {
-            score += 30
-        }
-    }
-}
-function collPkbllHaun(){
     
-    // right
-    if (pkbllX == haunterX +haunter.width) {
-        if (pkbllY +pkbll.height >= haunterY && pkbllY <= haunterY +haunter.height ){
-            score += 20
-        }
-    }
-    // left
-    if (pkbllX + pkbll.width == haunterX) {
-        if (pkbllY +pkbll.height >= haunterY && pkbllY <= haunterY +haunter.height ){
-            score += 20
-        }
-    }
-    // top
-    if (pkbllY +pkbll.height == haunterY) {
-        if (pkbllX + pkbll.width >= haunterX && pkbllX <= haunterX + haunter.width) {
-            score += 20
-        }
-    }
-    // bottom
-    if (pkbllY == haunterY +haunter.height) {
-        if (pkbllX + pkbll.width >= haunterX && pkbllX <= haunterX + haunter.width) {
-            score += 20
-        }
-    }
+//     // right
+//     if (pkbllX == gengarX +gengar.width) {
+//         if (pkbllY +pkbll.height >= gengarY && pkbllY <= gengarY +gengar.height ){
+//             score += 30
+//         }
+//     }
+//     // left
+//     if (pkbllX + pkbll.width == gengarX) {
+//         if (pkbllY +pkbll.height >= gengarY && pkbllY <= gengarY +gengar.height ){
+//             score += 30
+//         }
+//     }
+//     // top
+//     if (pkbllY +pkbll.height == gengarY) {
+//         if (pkbllX + pkbll.width >= gengarX && pkbllX <= gengarX + gengar.width) {
+//             score += 30
+//         }
+//     }
+//     // bottom
+//     if (pkbllY == gengarY +gengar.height) {
+//         if (pkbllX + pkbll.width >= gengarX && pkbllX <= gengarX + gengar.width) {
+//             score += 30
+//         }
+//     }
+// }
+// function collPkbllHaun(){
+    
+//     // right
+//     if (pkbllX == haunterX +haunter.width) {
+//         if (pkbllY +pkbll.height >= haunterY && pkbllY <= haunterY +haunter.height ){
+//             score += 20
+//         }
+//     }
+//     // left
+//     if (pkbllX + pkbll.width == haunterX) {
+//         if (pkbllY +pkbll.height >= haunterY && pkbllY <= haunterY +haunter.height ){
+//             score += 20
+//         }
+//     }
+//     // top
+//     if (pkbllY +pkbll.height == haunterY) {
+//         if (pkbllX + pkbll.width >= haunterX && pkbllX <= haunterX + haunter.width) {
+//             score += 20
+//         }
+//     }
+//     // bottom
+//     if (pkbllY == haunterY +haunter.height) {
+//         if (pkbllX + pkbll.width >= haunterX && pkbllX <= haunterX + haunter.width) {
+//             score += 20
+//         }
+//     }
    
-}
-function collPkbllGast(){
+// }
+// function collPkbllGast(){
     
-    // right
-    if (pkbllX == gastlyX +gastly.width) {
-        if (pkbllY +pkbll.height >= gastlyY && pkbllY <= gastlyY +gastly.height ){
-            score += 10
-        }
-    }
-    // left
-    if (pkbllX + pkbll.width == gastlyX) {
-        if (pkbllY +pkbll.height >= gastlyY && pkbllY <= gastlyY +gastly.height ){
-            score += 10
-        }
-    }
-    // top
-    if (pkbllY +pkbll.height == gastlyY) {
-        if (pkbllX + pkbll.width >= gastlyX && pkbllX <= gastlyX + gastly.width) {
-            score += 10
-        }
-    }
-    // bottom
-    if (pkbllY == gastlyY +gastly.height) {
-        if (pkbllX + pkbll.width >= gastlyX && pkbllX <= gastlyX + gastly.width) {
-            score += 10
-        }
-    }
-}
+//     // right
+//     if (pkbllX == gastlyX +gastly.width) {
+//         if (pkbllY +pkbll.height >= gastlyY && pkbllY <= gastlyY +gastly.height ){
+//             score += 10
+//         }
+//     }
+//     // left
+//     if (pkbllX + pkbll.width == gastlyX) {
+//         if (pkbllY +pkbll.height >= gastlyY && pkbllY <= gastlyY +gastly.height ){
+//             score += 10
+//         }
+//     }
+//     // top
+//     if (pkbllY +pkbll.height == gastlyY) {
+//         if (pkbllX + pkbll.width >= gastlyX && pkbllX <= gastlyX + gastly.width) {
+//             score += 10
+//         }
+//     }
+//     // bottom
+//     if (pkbllY == gastlyY +gastly.height) {
+//         if (pkbllX + pkbll.width >= gastlyX && pkbllX <= gastlyX + gastly.width) {
+//             score += 10
+//         }
+//     }
+// }
 
 // GAMEOVER COLLISSION
 
 function gameOv1(){
-    
-    // right
-    if (trnrX == gengarX +gengar.width) {
-        if (trnrY +trnr.height >= gengarY && trnrY <= gengarY +gengar.height ){
-            gameOver = true
-        }
-    }
-    // left
-    else if (trnrX + trnr.width == gengarX) {
-        if (trnrY +trnr.height >= gengarY && trnrY <= gengarY +gengar.height ){
-            gameOver = true
-        }
-    }
-    // top
-    else if (trnrY +trnr.height == gengarY) {
-        if (trnrX + trnr.width >= gengarX && trnrX <= gengarX + gengar.width) {
-            gameOver = true
-        }
-    }
-    // bottom
-    else if(trnrY == gengarY +gengar.height) {
-        if (trnrX + trnr.width >= gengarX && trnrX <= gengarX + gengar.width) {
-            gameOver = true
-        }
+    if (trnrX + trnr.width >= gengarX && trnrX <= gengarX + gengar.width && 
+        ((trnrY + trnr.width <= gengarY + gengar.height && trnrY + trnr.width >= gengarY ) || 
+        (trnrY + trnr.height + trnr.width >= gengarY +50 &&  trnrY + trnr.height + trnr.width <= gengarY + gengar.height + 50))) {
+        gameOver = true
     }
 }
 function gameOv2(){
-    
-    // right
-    if (trnrX == haunterX +haunter.width) {
-        if (trnrY +trnr.height >= haunterY && trnrY <= haunterY +haunter.height ){
-            gameOver = true
-        }
-    }
-    // left
-    if (trnrX + trnr.width == haunterX) {
-        if (trnrY +trnr.height >= haunterY && trnrY <= haunterY +haunter.height ){
-            gameOver = true
-        }
-    }
-    // top
-    if (trnrY +trnr.height == haunterY) {
-        if (trnrX + trnr.width >= haunterX && trnrX <= haunterX + haunter.width) {
-            gameOver = true
-        }
-    }
-    // bottom
-    if (trnrY == haunterY +haunter.height) {
-        if (trnrX + trnr.width >= haunterX && trnrX <= haunterX + haunter.width) {
-            gameOver = true
-        }
-    }
+    if (trnrX + trnr.width >= haunterX && trnrX <= haunterX + haunter.width && 
+        ((trnrY + trnr.width <= haunterY + haunter.height && trnrY + trnr.width >= haunterY ) || 
+        (trnrY + trnr.height + trnr.width >= haunterY +50 &&  trnrY + trnr.height + trnr.width <= haunterY + haunter.height + 50))) {
+        gameOver = true
+    } 
+   
 }
 function gameOv3(){
-    
-    // right
-    if (trnrX == gastlyX +gastly.width) {
-        if (trnrY +trnr.height >= gastlyY && trnrY <= gastlyY +gastly.height ){
-            gameOver = true
-        }
-    }
-    // left
-    if (trnrX + trnr.width == gastlyX) {
-        if (trnrY +trnr.height >= gastlyY && trnrY <= gastlyY +gastly.height ){
-            gameOver = true
-        }
-    }
-    // top
-    if (trnrY +trnr.height == gastlyY) {
-        if (trnrX + trnr.width >= gastlyX && trnrX <= gastlyX + gastly.width) {
-            gameOver = true
-        }
-    }
-    // bottom
-    if (trnrY == gastlyY +gastly.height) {
-        if (trnrX + trnr.width >= gastlyX && trnrX <= gastlyX + gastly.width) {
-            gameOver = true
-        }
+    if (trnrX + trnr.width >= gastlyX && trnrX <= gastlyX + gastly.width && 
+        ((trnrY + trnr.width <= gastlyY + gastly.height && trnrY + trnr.width >= gastlyY ) || 
+        (trnrY + trnr.height + trnr.width >= gastlyY +50 &&  trnrY + trnr.height + trnr.width <= gastlyY + gastly.height + 50))) {
+        gameOver = true
     }
 }
 
@@ -349,74 +292,219 @@ function animate (){
     // TRNR Move
     // right trnr
     if (isRight && trnrX + trnr.width < canvas.width) {
-        trnrX = trnrX + 8
+        trnrX = trnrX + 16
     }
     // left trnr
     if (isLeft && trnrX > 0) {
-        trnrX = trnrX - 8
+        trnrX = trnrX - 16
     }
     // up trnr
     if (isUp && trnrY > 0) {
-        trnrY = trnrY - 8
+        trnrY = trnrY - 16
     }
     // downtrnr
     if (isDown && trnrY < canvas.height - trnr.height) {
-        trnrY = trnrY + 8
+        trnrY = trnrY + 16
     }
 
-    // PKBLL SHOOT
+   
+   
+   
+    // PKBLL SHOOT SCORE++
 
-    if (isD) {
-        for (let i = 0; i < arrPkbll.length; i++) {
-            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
-               
-          arrPkbll[i].x += incrPkbll;
-        //   console.log(arrPkbll)
-             if (arrPkbll.length > 1) {
-                 arrPkbll.splice(i,1)
-             }
+   function catchGengar() {
+    // isD gengar
+    for (let i = 0; i < arrPkbll.length; i++) {
 
-        }
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
         
-    }    
-    if (isA) {
-        for (let i = 0; i < arrPkbll.length; i++) {
-            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
-              
-          arrPkbll[i].x -= incrPkbll;
-          if (arrPkbll.length > 1) {
+
+     if (isD) {arrPkbll[i].x += incrPkbll} 
+     if (arrPkbll[i].x + pkbll.width >= gengarX && arrPkbll[i].x <= gengarX + gengar.width && 
+        ((arrPkbll[i].y + pkbll.width <= gengarY + gengar.height && arrPkbll[i].y + pkbll.width >= gengarY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
+            score += 30 
             arrPkbll.splice(i,1)
         }
-          
-        }
+     else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
-    if (isW) {
+    // isA gengar 
+    for (let i = 0; i < arrPkbll.length; i++) {
+
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+        
+
+     if (isA) {arrPkbll[i].x -= incrPkbll}
+     if (arrPkbll[i].x + pkbll.width >= gengarX && arrPkbll[i].x <= gengarX + gengar.width && 
+        ((arrPkbll[i].y + pkbll.width <= gengarY + gengar.height && arrPkbll[i].y + pkbll.width >= gengarY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
+            score += 30 
+            arrPkbll.splice(i,1)
+        }
+        else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+    }
+    //  isW gengar
+    for (let i = 0; i < arrPkbll.length; i++) {
+
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+        
+
+     if (isW) {arrPkbll[i].y -= incrPkbll}
+     if (arrPkbll[i].x + pkbll.width >= gengarX && arrPkbll[i].x <= gengarX + gengar.width && 
+        ((arrPkbll[i].y + pkbll.width <= gengarY + gengar.height && arrPkbll[i].y + pkbll.width >= gengarY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
+            score += 30 
+            arrPkbll.splice(i,1)
+        }
+        else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+    }
+    // isS gengar
+    for (let i = 0; i < arrPkbll.length; i++) {
+
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+        
+
+     if (isS) {arrPkbll[i].y += incrPkbll}
+     if (arrPkbll[i].x + pkbll.width >= gengarX && arrPkbll[i].x <= gengarX + gengar.width && 
+        ((arrPkbll[i].y + pkbll.width <= gengarY + gengar.height && arrPkbll[i].y + pkbll.width >= gengarY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
+            score += 30 
+            arrPkbll.splice(i,1)
+        }
+        else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+    }
+  
+    }
+    catchGengar()
+   function catchHaunter() {
+    // isD haunter
+    for (let i = 0; i < arrPkbll.length; i++) {
+
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+        
+
+     if (isD) {arrPkbll[i].x += incrPkbll} 
+     if (arrPkbll[i].x + pkbll.width >= haunterX && arrPkbll[i].x <= haunterX + haunter.width && 
+        ((arrPkbll[i].y + pkbll.width <= haunterY + haunter.height && arrPkbll[i].y + pkbll.width >= haunterY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
+            score += 30 
+            arrPkbll.splice(i,1)
+        }
+     else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+    }
+    // isA haunter 
+    for (let i = 0; i < arrPkbll.length; i++) {
+
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+        
+
+     if (isA) {arrPkbll[i].x -= incrPkbll}
+     if (arrPkbll[i].x + pkbll.width >= haunterX && arrPkbll[i].x <= haunterX + haunter.width && 
+        ((arrPkbll[i].y + pkbll.width <= haunterY + haunter.height && arrPkbll[i].y + pkbll.width >= haunterY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
+            score += 30 
+            arrPkbll.splice(i,1)
+        }
+        else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+    }
+    //  isW haunter
+    for (let i = 0; i < arrPkbll.length; i++) {
+
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+        
+
+     if (isW) {arrPkbll[i].y -= incrPkbll}
+     if (arrPkbll[i].x + pkbll.width >= haunterX && arrPkbll[i].x <= haunterX + haunter.width && 
+        ((arrPkbll[i].y + pkbll.width <= haunterY + haunter.height && arrPkbll[i].y + pkbll.width >= haunterY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
+            score += 30 
+            arrPkbll.splice(i,1)
+        }
+        else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+    }
+    // isS haunter
+    for (let i = 0; i < arrPkbll.length; i++) {
+
+        ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+        
+
+     if (isS) {arrPkbll[i].y += incrPkbll}
+     if (arrPkbll[i].x + pkbll.width >= haunterX && arrPkbll[i].x <= haunterX + haunter.width && 
+        ((arrPkbll[i].y + pkbll.width <= haunterY + haunter.height && arrPkbll[i].y + pkbll.width >= haunterY ) || 
+        (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
+            score += 30 
+            arrPkbll.splice(i,1)
+        }
+        else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+    }
+  
+    }
+    catchHaunter()
+    function catchgastly() {
+        // isD gastly
         for (let i = 0; i < arrPkbll.length; i++) {
-            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);          
-          
-            arrPkbll[i].y -= incrPkbll;
-            if (arrPkbll.length > 1) {
+    
+            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+            
+    
+         if (isD) {arrPkbll[i].x += incrPkbll} 
+         if (arrPkbll[i].x + pkbll.width >= gastlyX && arrPkbll[i].x <= gastlyX + gastly.width && 
+            ((arrPkbll[i].y + pkbll.width <= gastlyY + gastly.height && arrPkbll[i].y + pkbll.width >= gastlyY ) || 
+            (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
+                score += 30 
                 arrPkbll.splice(i,1)
             }
-            
-          
+         else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
         }
-    }
-    if (isS) {
+        // isA gastly 
         for (let i = 0; i < arrPkbll.length; i++) {
-            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);       
-          arrPkbll[i].y += incrPkbll;
-          if (arrPkbll.length > 1) {
-            arrPkbll.splice(i,1)
-        }
+    
+            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
             
+    
+         if (isA) {arrPkbll[i].x -= incrPkbll}
+         if (arrPkbll[i].x + pkbll.width >= gastlyX && arrPkbll[i].x <= gastlyX + gastly.width && 
+            ((arrPkbll[i].y + pkbll.width <= gastlyY + gastly.height && arrPkbll[i].y + pkbll.width >= gastlyY ) || 
+            (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
+                score += 30 
+                arrPkbll.splice(i,1)
+            }
+            else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
         }
+        //  isW gastly
+        for (let i = 0; i < arrPkbll.length; i++) {
+    
+            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+            
+    
+         if (isW) {arrPkbll[i].y -= incrPkbll}
+         if (arrPkbll[i].x + pkbll.width >= gastlyX && arrPkbll[i].x <= gastlyX + gastly.width && 
+            ((arrPkbll[i].y + pkbll.width <= gastlyY + gastly.height && arrPkbll[i].y + pkbll.width >= gastlyY ) || 
+            (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
+                score += 30 
+                arrPkbll.splice(i,1)
+            }
+            else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+        }
+        // isS gastly
+        for (let i = 0; i < arrPkbll.length; i++) {
+    
+            ctx.drawImage(pkbll, arrPkbll[i].x+31, arrPkbll[i].y+40);
+            
+    
+         if (isS) {arrPkbll[i].y += incrPkbll}
+         if (arrPkbll[i].x + pkbll.width >= gastlyX && arrPkbll[i].x <= gastlyX + gastly.width && 
+            ((arrPkbll[i].y + pkbll.width <= gastlyY + gastly.height && arrPkbll[i].y + pkbll.width >= gastlyY ) || 
+            (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
+                score += 30 
+                arrPkbll.splice(i,1)
+            }
+            else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
+        }
+      
     }
-
-    collPkbllGeng()
-    collPkbllHaun()
-    collPkbllGast()
-
+    catchgastly()
+    
     gameOv1()
     gameOv2()
     gameOv3()
@@ -425,8 +513,14 @@ function animate (){
         cancelAnimationFrame( intervalId )
         canvas.style.display = 'none'
         restartBtn.style.display = 'block'
-        startAudio.pause()
-        gameOverAudio.play()
+        startScreen.style.display = 'block'
+
+        ctx.fillStyle = 'white'
+        ctx.font = '30px Verdana'
+        ctx.fillText(`Score: ${score}`, 30, 30)
+
+        // startAudio.pause()
+        // gameOverAudio.play()
     }
     else {
         intervalId = requestAnimationFrame(animate)
@@ -438,13 +532,14 @@ function start() {
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'
+    startScreen.style.display = 'none'
     // startAudio.play()
     
     ctx.fillStyle = 'white'
     ctx.font = '30px Verdana'
     ctx.fillText(`Score: ${score}`, 30, 30)
 
-    // draw()
+    draw()
     
     animate()
     
@@ -455,37 +550,10 @@ window.addEventListener('load', () => {
     canvas.style.display = 'none'
     restartBtn.style.display = 'none'
 
-    // draw()    
-    start()
+        
+    // start()
     
-    // document.addEventListener('keydown', (event) => {
-    //     if (event.code == 'keyD') {
-    //         isD = true
-    //         isA = false
-    //         isW = false
-    //         isS = false
-    //     }
-    //     else if (event.code == 'keyA') {
-    //         isD = false
-    //         isA = true
-    //         isW = false
-    //         isS = false
-    //     }
-    //     else if (event.code == 'keyW') {
-    //         isD = false
-    //         isA = false
-    //         isW = true
-    //         isS = false
-    //     }
-    //     else if (event.code == 'keyS') {
-    //         isD = false
-    //         isA = false
-    //         isW = false
-    //         isS = true
-    //         console.log('trigger?')
-    //     }
-    // })
-    // trainer movements
+    // trainer movement event
     document.addEventListener('keydown', (event) =>{
         if (event.code == 'ArrowRight') {
             isRight = true
@@ -512,6 +580,7 @@ window.addEventListener('load', () => {
             isDown = true
         }
     })
+    // pkbll throw event
     document.addEventListener('keydown', (event) =>{
         // if (event.code == "KeyS") {
         //     arrayOfBalls.push({ x: scarletX + 50, y: scarletY + 20 });
@@ -558,7 +627,6 @@ window.addEventListener('load', () => {
         // isA = false
         // isW = false
         // isS = false
-
     })
 
 
@@ -570,8 +638,8 @@ window.addEventListener('load', () => {
     //     // reset the values in your game
     restartBtn.addEventListener('click', () => {
 
-          gameOver = false;
+        gameOver = false;
         score = 0
-        start()
+        start();
         })
 })

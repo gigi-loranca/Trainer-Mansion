@@ -6,7 +6,7 @@ canvas.style.border = '2px solid black'
 
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
-let startScreen = document.querySelector('div img')
+let startScreen = document.querySelector('img')
 let gameOver = false;
 let score = 0
 let lives = 3
@@ -529,10 +529,10 @@ function animate (){
 }
 
 function start() {
+    startScreen.style.display = 'none'
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'
-    startScreen.style.display = 'none'
     // startAudio.play()
     
     ctx.fillStyle = 'white'
@@ -638,8 +638,10 @@ window.addEventListener('load', () => {
     //     // reset the values in your game
     restartBtn.addEventListener('click', () => {
 
-        gameOver = false;
+        gameOver = false
         score = 0
-        start();
+        trnrX = 308, trnrY =610
+        start()
+        
         })
 })

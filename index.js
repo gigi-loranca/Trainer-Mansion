@@ -20,13 +20,15 @@ let pkbllX = trnrX +31, pkbllY = trnrY +40;
 let arrPkbll = []
 let incrPkbll  = 10 
 
-let gengarX = Math.floor(Math.random() *200), gengarY = 0 
+
+
+let gengarX = Math.floor(Math.random() *200) +50 , gengarY = 0 
 let gengarIncrX = 4, gengarIncrY = 4
 
-let haunterX = Math.floor(Math.random() *400), haunterY = 0
+let haunterX = Math.floor(Math.random() *400) +50, haunterY = 0
 let haunterIncrX = -4, haunterIncrY = 4
 
-let gastlyX = Math.floor(Math.random() *600), gastlyY = 0
+let gastlyX = Math.floor(Math.random() *600) -50, gastlyY = 0
 let gastlyIncrX = 4, gastlyIncrY = -4
 
 
@@ -641,6 +643,9 @@ window.addEventListener('load', () => {
         gameOver = false
         score = 0
         trnrX = 308, trnrY =610
+        gengarX = Math.floor(Math.random() *200) +50 , gengarY = 0 
+        haunterX = Math.floor(Math.random() *400) +50, haunterY = 0
+        gastlyX = Math.floor(Math.random() *600) -50, gastlyY = 0
         start()
         
         })

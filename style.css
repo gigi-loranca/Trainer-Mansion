@@ -7,29 +7,53 @@
 }
 
 h1 {
-    text-align: left;
+    text-align: center;
     color: white;
     font-size: 20px;
 }
 
 h2{
-    text-align: left;
+    text-align: center;
     color: white;
     font-size: 20px;
+    position: absolute;
+    bottom: 300px;
+    left: 60px;
 }
-
+h3{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    bottom: 250px;
+    left: 270px;
+}
 #start {
     margin: auto;
     /* text-align: center; */
     width: 10%;
     border: 3px solid rgb(175, 36, 175);
-    display: grid;
+    position: absolute;
+    top: 350px;
+    left: 260px;
   }
-/* #start {
-    text-align: center;
-    color: purple;
-    font-size: 30px
-} */
+  #restart {
+    margin: auto;
+    /* text-align: center; */
+    width: 10%;
+    border: 3px solid rgb(175, 36, 175);
+    
+    position: absolute;
+    top: 350px;
+    left: 260px;
+  }
+  .pokemon{
+    src: url(./images/gengar.png);
+    position: absolute;
+    top: 200px;
+    left: 160 px;
+}
+
 
 body {
     background-image: url(images/startscreen.png);
@@ -38,9 +62,12 @@ body {
     background-size: auto;
     background-repeat: no-repeat;
 }
+
+
 #gameScreen{
     background-size: auto;
     width: max-content;
     height: max-content;
     color:rgb(175, 36, 175) ;
 }
+

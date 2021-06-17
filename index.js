@@ -6,7 +6,8 @@ canvas.style.border = '2px solid black'
 
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
-let startScreen = document.querySelector('img')
+let startScreen = document.querySelector('#startscreen')
+let text = document.querySelectorAll('body h')
 let gameOver = false;
 let score = 0
 let lives = 3
@@ -515,7 +516,8 @@ function animate (){
         cancelAnimationFrame( intervalId )
         canvas.style.display = 'none'
         restartBtn.style.display = 'block'
-        // startScreen.style.display = 'block'
+        startScreen.style.display = 'block'
+        text.style.display='none'
 
         ctx.fillStyle = 'white'
         ctx.font = '30px Verdana'
@@ -531,7 +533,7 @@ function animate (){
 }
 
 function start() {
-    // startScreen.style.display = 'none'
+    startScreen.style.display = 'none'
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'

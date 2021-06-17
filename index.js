@@ -16,6 +16,7 @@ let startAudio = new Audio('sound/Pokemon Route 3.mp3')
 startAudio.volume = 0.1
 
 let gameAudio = new Audio('sound/lavender loop.mp3')
+gameAudio.volume = 0.3
 
 
 let gameOverAudio = new Audio('sound/gameOver.mp3')

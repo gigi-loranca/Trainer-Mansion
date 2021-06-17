@@ -8,6 +8,10 @@ let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
 let startScreen = document.querySelector('#startscreen')
 let text = document.querySelectorAll('body h')
+
+// let audio
+
+
 let gameOver = false;
 let score = 0
 let lives = 3
@@ -20,7 +24,6 @@ let trnrX = 308, trnrY =610
 let pkbllX = trnrX +31, pkbllY = trnrY +40;
 let arrPkbll = []
 let incrPkbll  = 10 
-
 
 
 let gengarX = Math.floor(Math.random() *200) +50 , gengarY = 0 

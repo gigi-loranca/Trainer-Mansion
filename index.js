@@ -7,16 +7,29 @@ canvas.style.border = '2px solid black'
 let startBtn = document.querySelector('#start')
 let restartBtn = document.querySelector('#restart')
 let startScreen = document.querySelector('#startscreen')
-let text = document.querySelectorAll('body h')
+let scoreAm = document.querySelector('#score')
 
-// let audio
+
+
+// game audios
+let startAudio = new Audio('sound/Pokemon Route 3.mp3')
+startAudio.volume = 0.1
+
+let gameAudio = new Audio('sound/lavender loop.mp3')
+
+
+let gameOverAudio = new Audio('sound/gameOver.mp3')
+gameOverAudio.volume = 0.1
+
+let hitAudio = new Audio('sound/hit.mp3')
+hitAudio.volume = 0.1
 
 
 let gameOver = false;
 let score = 0
-let lives = 3
+let finalScore = 0
 let intervalId = 0;
-let isGameOver = false;
+
 
 let random = (Math.random() *5)
 
@@ -24,6 +37,9 @@ let trnrX = 308, trnrY =610
 let pkbllX = trnrX +31, pkbllY = trnrY +40;
 let arrPkbll = []
 let incrPkbll  = 10 
+
+let pikaX = Math.floor(Math.random() *200) +50, pikaY =Math.floor(Math.random() *200) +50;
+let pikaIncrX = -3 , pikaIncrY = 0
 
 
 let gengarX = Math.floor(Math.random() *200) +50 , gengarY = 0 
@@ -79,9 +95,9 @@ function drawLives() {
     ctx.fillText(`Lives `, 550, 30)
 }
 function drawPika () {
-    capOne = ctx.drawImage(cap,550,40)
-    capTwo = ctx.drawImage(cap,590,40)
-    capThr = ctx.drawImage(cap,630,40)
+    capOne = ctx.drawImage(cap,660,350)
+    // capTwo = ctx.drawImage(cap,590,40)
+    // capThr = ctx.drawImage(cap,630,40)
 }
 
 function drawTrnr() {
@@ -104,9 +120,7 @@ function drawGstl() {
 function draw() {
     
     drawBg()
-    drawScore()
-    // drawPika()
-    // drawLives()
+    drawScore()   
     drawTrnr()
     drawGngr()
     drawHntr()
@@ -161,90 +175,7 @@ function collisionGastly() {
     }
 }
 
-// PKMN COLLISION
-// function collPkbllGeng(){
-    
-    
-//     // right
-//     if (pkbllX == gengarX +gengar.width) {
-//         if (pkbllY +pkbll.height >= gengarY && pkbllY <= gengarY +gengar.height ){
-//             score += 30
-//         }
-//     }
-//     // left
-//     if (pkbllX + pkbll.width == gengarX) {
-//         if (pkbllY +pkbll.height >= gengarY && pkbllY <= gengarY +gengar.height ){
-//             score += 30
-//         }
-//     }
-//     // top
-//     if (pkbllY +pkbll.height == gengarY) {
-//         if (pkbllX + pkbll.width >= gengarX && pkbllX <= gengarX + gengar.width) {
-//             score += 30
-//         }
-//     }
-//     // bottom
-//     if (pkbllY == gengarY +gengar.height) {
-//         if (pkbllX + pkbll.width >= gengarX && pkbllX <= gengarX + gengar.width) {
-//             score += 30
-//         }
-//     }
-// }
-// function collPkbllHaun(){
-    
-//     // right
-//     if (pkbllX == haunterX +haunter.width) {
-//         if (pkbllY +pkbll.height >= haunterY && pkbllY <= haunterY +haunter.height ){
-//             score += 20
-//         }
-//     }
-//     // left
-//     if (pkbllX + pkbll.width == haunterX) {
-//         if (pkbllY +pkbll.height >= haunterY && pkbllY <= haunterY +haunter.height ){
-//             score += 20
-//         }
-//     }
-//     // top
-//     if (pkbllY +pkbll.height == haunterY) {
-//         if (pkbllX + pkbll.width >= haunterX && pkbllX <= haunterX + haunter.width) {
-//             score += 20
-//         }
-//     }
-//     // bottom
-//     if (pkbllY == haunterY +haunter.height) {
-//         if (pkbllX + pkbll.width >= haunterX && pkbllX <= haunterX + haunter.width) {
-//             score += 20
-//         }
-//     }
-   
-// }
-// function collPkbllGast(){
-    
-//     // right
-//     if (pkbllX == gastlyX +gastly.width) {
-//         if (pkbllY +pkbll.height >= gastlyY && pkbllY <= gastlyY +gastly.height ){
-//             score += 10
-//         }
-//     }
-//     // left
-//     if (pkbllX + pkbll.width == gastlyX) {
-//         if (pkbllY +pkbll.height >= gastlyY && pkbllY <= gastlyY +gastly.height ){
-//             score += 10
-//         }
-//     }
-//     // top
-//     if (pkbllY +pkbll.height == gastlyY) {
-//         if (pkbllX + pkbll.width >= gastlyX && pkbllX <= gastlyX + gastly.width) {
-//             score += 10
-//         }
-//     }
-//     // bottom
-//     if (pkbllY == gastlyY +gastly.height) {
-//         if (pkbllX + pkbll.width >= gastlyX && pkbllX <= gastlyX + gastly.width) {
-//             score += 10
-//         }
-//     }
-// }
+
 
 // GAMEOVER COLLISSION
 
@@ -253,6 +184,9 @@ function gameOv1(){
         ((trnrY + trnr.width <= gengarY + gengar.height && trnrY + trnr.width >= gengarY ) || 
         (trnrY + trnr.height + trnr.width >= gengarY +50 &&  trnrY + trnr.height + trnr.width <= gengarY + gengar.height + 50))) {
         gameOver = true
+        gameAudio.pause()
+        gameOverAudio.play()
+
     }
 }
 function gameOv2(){
@@ -260,6 +194,8 @@ function gameOv2(){
         ((trnrY + trnr.width <= haunterY + haunter.height && trnrY + trnr.width >= haunterY ) || 
         (trnrY + trnr.height + trnr.width >= haunterY +50 &&  trnrY + trnr.height + trnr.width <= haunterY + haunter.height + 50))) {
         gameOver = true
+        gameAudio.pause()
+        gameOverAudio.play()
     } 
    
 }
@@ -268,6 +204,8 @@ function gameOv3(){
         ((trnrY + trnr.width <= gastlyY + gastly.height && trnrY + trnr.width >= gastlyY ) || 
         (trnrY + trnr.height + trnr.width >= gastlyY +50 &&  trnrY + trnr.height + trnr.width <= gastlyY + gastly.height + 50))) {
         gameOver = true
+        gameAudio.pause()
+        gameOverAudio.play()
     }
 }
 
@@ -331,6 +269,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
      else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -346,6 +285,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
         else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -361,6 +301,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
         else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -376,6 +317,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= gengarY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gengarY + gengar.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
         else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -395,6 +337,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
      else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -410,6 +353,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
         else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -425,6 +369,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
         else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -440,6 +385,7 @@ function animate (){
         (arrPkbll[i].y + pkbll.height + pkbll.width >= haunterY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= haunterY + haunter.height + 50))) {
             score += 30 
             arrPkbll.splice(i,1)
+            hitAudio.play()
         }
         else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
     }
@@ -459,6 +405,7 @@ function animate (){
             (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
                 score += 30 
                 arrPkbll.splice(i,1)
+                hitAudio.play()
             }
          else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
         }
@@ -474,6 +421,7 @@ function animate (){
             (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
                 score += 30 
                 arrPkbll.splice(i,1)
+                hitAudio.play()
             }
             else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
         }
@@ -489,6 +437,7 @@ function animate (){
             (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
                 score += 30 
                 arrPkbll.splice(i,1)
+                hitAudio.play()
             }
             else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
         }
@@ -504,13 +453,17 @@ function animate (){
             (arrPkbll[i].y + pkbll.height + pkbll.width >= gastlyY +50 &&  arrPkbll[i].y + pkbll.height + pkbll.width <= gastlyY + gastly.height + 50))) {
                 score += 30 
                 arrPkbll.splice(i,1)
+                hitAudio.play()
             }
             else if (arrPkbll.length > 1) {arrPkbll.splice(i,1)} 
         }
       
     }
     catchgastly()
+
+    finalScore = +score
     
+
     gameOv1()
     gameOv2()
     gameOv3()
@@ -520,14 +473,21 @@ function animate (){
         canvas.style.display = 'none'
         restartBtn.style.display = 'block'
         startScreen.style.display = 'block'
-        text.style.display='none'
+
+        startAudio.pause()
+        gameAudio.pause()
+        gameOverAudio.play()
+
+        finalScore = +score
+        scoreAm.innerHTML = `SCORE [ ${finalScore}]`
+        
 
         ctx.fillStyle = 'white'
         ctx.font = '30px Verdana'
         ctx.fillText(`Score: ${score}`, 30, 30)
 
-        // startAudio.pause()
-        // gameOverAudio.play()
+        gameAudio.pause()
+        gameOverAudio.play()
     }
     else {
         intervalId = requestAnimationFrame(animate)
@@ -541,6 +501,9 @@ function start() {
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'
     // startAudio.play()
+
+    startAudio.pause()
+    gameAudio.play()     
     
     ctx.fillStyle = 'white'
     ctx.font = '30px Verdana'
@@ -552,13 +515,11 @@ function start() {
     
 }
 
-
 window.addEventListener('load', () => {
+    startAudio.play()
     canvas.style.display = 'none'
     restartBtn.style.display = 'none'
 
-        
-    // start()
     
     // trainer movement event
     document.addEventListener('keydown', (event) =>{
@@ -651,6 +612,13 @@ window.addEventListener('load', () => {
         gengarX = Math.floor(Math.random() *200) +50 , gengarY = 0 
         haunterX = Math.floor(Math.random() *400) +50, haunterY = 0
         gastlyX = Math.floor(Math.random() *600) -50, gastlyY = 0
+
+        scoreAm.style.display = 'none'
+
+        startAudio.pause()
+        gameOverAudio.pause()
+        
+
         start()
         
         })

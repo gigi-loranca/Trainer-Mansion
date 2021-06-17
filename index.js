@@ -515,7 +515,7 @@ function animate (){
         cancelAnimationFrame( intervalId )
         canvas.style.display = 'none'
         restartBtn.style.display = 'block'
-        startScreen.style.display = 'block'
+        // startScreen.style.display = 'block'
 
         ctx.fillStyle = 'white'
         ctx.font = '30px Verdana'
@@ -531,7 +531,7 @@ function animate (){
 }
 
 function start() {
-    startScreen.style.display = 'none'
+    // startScreen.style.display = 'none'
     canvas.style.display = 'block'
     restartBtn.style.display = 'none'
     startBtn.style.display = 'none'
